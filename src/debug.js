@@ -1,21 +1,55 @@
+// Question 10
 const myEvery = (arr, callback) => {
   for (const value of arr) {
-    if (callback) return false;
+    if (!callback(value)) return false;
   }
   return true;
 };
+const oddNums = [1, 3, 5, 7, 9];
+const areAllNumsOdd1 = myEvery(oddNums, (num) => num % 2);
+console.log(areAllNumsOdd1)
 
-const sortUsersBy = (users, sortingFunction) => {
-  return [...users].sort(sortingFunction());
+// Question 11
+const sortUsersBy = (arr, callback) => {
+  const newArr = [...arr]
+  return newArr.sort(callback);
 };
+const users = [
+  { name: 'Alice', height: 22 },
+  { name: 'Bob', height: 32 },
+  { name: 'Charlie', height: 28 },
+  { name: 'Diana', height: 40 },
+];
+console.log(users)
+const usersSortedByAge = sortUsersBy(users, (a, b) => b.height - a.height);
+console.log(usersSortedByAge)
 
+// Question 12
 const logEachName = (names) => {
-  return names.forEach(console.log());
+  names.forEach((value, index, array) => {
+    console.log(value, index, array);
+  });
 };
 
+const names = ['Alice', 'Bob', 'Charlie', 'Diana'];
+logEachName(names);
+
+// Question 12 (Second fucntion)
 const logEachUserBio = (users) => {
-  return users.forEach(console.log(users.bio));
-};
+  users.forEach((users) => {;
+  console.log(users.bio)
+})
+}
+
+    const users1 = [
+      { name: 'Alice', bio: 'Alice is a software engineer' },
+      { name: 'Bob', bio: 'Bob is a teacher' },
+      { name: 'Charlie', bio: 'Charlie is a student' },
+      { name: 'Diana', bio: 'Diana is a doctor' },
+    ];
+logEachUserBio(users1)
+
+
 
 module.exports = {
   myEvery,
